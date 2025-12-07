@@ -1,0 +1,6 @@
+package AsciiWeb
+
+
+func Start()  {
+	
+}
