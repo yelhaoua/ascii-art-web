@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ascii Art Web</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>body {transition: opacity ease-in 0.2s;} body[unresolved]{opacity:0;display:block;overflow:hidden;position:relative;}</style>
+</head>
+<body>
+    <h1>Ascii Art Web</h1>
+    <div class="cont">
+        <form action="/submit" method="post" aria-label="Ascii art generator form" id="asciiForm">
+            <h2>Text to ASCII Art Generator: Create ASCII Art from Text</h2>
+
+            <label for="userinput">
+                Input text:
+                <input type="text" name="userinput" id="userinput" placeholder="Enter text to convert" required>
+            </label>
+
+            <label for="list-style" id="for-style">
+                Select style:
+                <select name="style" id="list-style" aria-label="Font style">
+                    <option value="shadow">Shadow</option>
+                    <option value="standard">Standard</option>
+                    <option value="thinkertoy">Thinkertoy</option>
+                </select>
+            </label>
+
+            <div class="form-actions">
+                <input type="submit" value="submit" name="submit" id="submit-btn">
+            </div>
+        </form>
+
+        <div id="result" aria-live="polite" style="white-space: pre; font-family: monospace; margin-top:1rem;"></div>
+    </div>
+
+</body>
+    <script>
+        document.getElementById("asciiForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = ``;
+            data.style = document.getElementById("list-style").value
+            data.style = document.getElementById("userinput").value
+
+            console.log(data);
+            
+            fetch("/submit", {
+                method: "POST",
+                body: data
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+                document.getElementById("result").textContent = data;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</html>
