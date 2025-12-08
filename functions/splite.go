@@ -8,7 +8,7 @@ import (
 
 func Spite(input, style string) string {
 	out := ""
-	data, err := os.ReadFile("../Arts/"+style+".txt")
+	data, err := os.ReadFile("../styles/"+style+".txt")
 	if err != nil {
 		return "error type 01"
 	}
