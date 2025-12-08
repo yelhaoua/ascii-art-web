@@ -6,12 +6,10 @@ import (
 	"net/http"
 )
 
-var temp, errtemp = template.ParseGlob("files/*.html")
+var temp = template.Must(template.ParseGlob("files/*.html"))
+var name = ""
 
 func home(w http.ResponseWriter, r *http.Request) {
-	if errtemp != nil {
-		fmt.Println(w, errtemp)
-	}
 
 	err := temp.ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
@@ -20,13 +18,18 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 }
 func handelForm(w http.ResponseWriter, r *http.Request) {
-	err := temp.ExecuteTemplate(w, "form.html", nil)
+	if r.Method == "POST" {
+		name = r.FormValue("name")
+	} 
+
+	err := temp.ExecuteTemplate(w, "form.html", name)
 	if err != nil {
 		fmt.Fprintln(w, err)
 	}
+
 }
 func handleAscii(w http.ResponseWriter, r *http.Request) {
-	err := temp.ExecuteTemplate(w, "ascii.html", "Yaakoub")
+	err := temp.ExecuteTemplate(w, "ascii.html", name)
 	if err != nil {
 		fmt.Fprintln(w, err)
 	}

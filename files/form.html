@@ -7,7 +7,12 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="ascii.html" method="post">
+    <form action="" method="post">
+      {{if .}}
+      <h1>welcome {{.}}</h1>
+      {{else}}
+      <h1>Enter name pleas</h1>
+      {{end}}
       <input type="text" name="name" placeholder="Enter Text" />
       <button type="submit">submit</button>
     </form>
