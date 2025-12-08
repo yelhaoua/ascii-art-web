@@ -17,12 +17,46 @@
       <div class="Hero">
         <h1 class="Header">Generate Text to</h1>
         <h1 class="Tag">ASCII Art</h1>
-        <p>
+        <!-- <p>
           Convert any text into beautiful ASCII art instantly with our fast and
           easy-to-use generator.
-        </p>
-        <a href="form.html" class="liquid-btn">Generate</a>
+        </p> -->
       </div>
+      <form action="./ascii-art.html" method="post">
+        <div class="Inputs">
+          <div class="Inputs-lable">
+            <label for="shadow">shadow</label>
+            <input id="shadow" type="radio" value="shadow.txt" name="radio" />
+            {{if .ferr}}
+            <p>{{ .ferr}}</p>
+            {{end}}
+            <label for="standard">standard</label>
+            <input
+              checked
+              id="standard"
+              type="radio"
+              value="standard.txt"
+              name="radio"
+            />
+            <label for="thinkertoy">thinkertoy</label>
+            <input
+              id="thinkertoy"
+              type="radio"
+              value="thinkertoy.txt"
+              name="radio"
+            />
+          </div>
+        </div>
+        <input
+          class="generate"
+          type="text"
+          name="name"
+          placeholder="Enter Text"
+          value="Enter some caracters"
+        />
+
+        <button class="liquid-btn" type="submit">Generate</button>
+      </form>
     </div>
   </body>
 </html>

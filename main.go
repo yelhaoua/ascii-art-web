@@ -8,11 +8,13 @@ import (
 )
 
 var temp = template.Must(template.ParseGlob("files/*.html"))
-var name = ""
-var fName = ""
+var name string
+var fName string
 
 func home(w http.ResponseWriter, r *http.Request) {
-
+	if r.Method != http.MethodGet {
+		w.WriteHeader(http.StatusBadRequest)
+	}
 	err := temp.ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
 		fmt.Fprintln(w, err)
@@ -20,33 +22,30 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func handelForm(w http.ResponseWriter, r *http.Request) {
-	temp.ExecuteTemplate(w, "form.html", nil)
-}
-
 func handleAscii(w http.ResponseWriter, r *http.Request) {
 
-	if r.Method == "POST" {
-		fName = r.FormValue("radio")
+	if r.Method == http.MethodPost {
 		name = r.FormValue("name")
+		fName = r.FormValue("radio")
 
+	} else {
+		w.WriteHeader(http.StatusBadRequest)
 	}
-	
 	splited := asciiart.Splite(fName)
 
 	name = asciiart.PrintSymbole(splited, name)
-	asciiErr := temp.ExecuteTemplate(w, "ascii.html", name)
+
+	asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", name)
 	if asciiErr != nil {
 		fmt.Fprintln(w, asciiErr)
 	}
+	w.WriteHeader(http.StatusOK)
 
 }
 
 func main() {
 	http.Handle("/files/", http.StripPrefix("/files/", http.FileServer(http.Dir("files"))))
-
 	http.HandleFunc("/", home)
-	http.HandleFunc("/form.html", handelForm)
-	http.HandleFunc("/ascii.html", handleAscii)
+	http.HandleFunc("/ascii-art.html", handleAscii)
 	http.ListenAndServe(":8080", nil)
 }
