@@ -24,7 +24,7 @@ It works using HTTP **GET** and **POST** requests and follows proper **HTTP stat
 ### 1. Clone the repository:
 
 ```bash
-git clone <your-repo-link>
+git clone git@github.com:yelhaoua/ascii-art-web.git
 cd ascii-art-web
 go run main.go
 http://localhost:8080
