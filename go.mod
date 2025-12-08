@@ -1,3 +1,3 @@
-module AsciiWeb
+module asciiweb
 
 go 1.22.3

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"AsciiWeb/functions"
+	"asciiweb/functions"
 )
 
 
 func main()  {
-	AsciiWeb.Start()
+	asciiweb.Start()
 }

@@ -1,4 +1,4 @@
-package AsciiWeb
+package asciiweb
 
 import (
 	"fmt"

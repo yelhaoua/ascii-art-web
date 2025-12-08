@@ -69,7 +69,7 @@ select {
     font-size: 1rem;
 }
 
-input[type="submit"] {
+#submit-btn {
     cursor: pointer;
     background: linear-gradient(90deg, var(--accent), #4f46e5);
     color: white;
@@ -82,7 +82,15 @@ input[type="submit"] {
     justify-self: center;
     box-shadow: 0 6px 18px rgba(76, 73, 255, 0.25);
 }
-
+#result{
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+}
 #for-style { margin-top: 0.25rem; margin-bottom: 0.25rem; }
 
 @media (min-width: 640px) {
@@ -91,5 +99,5 @@ input[type="submit"] {
 
 @media (max-width: 420px) {
     .cont { padding: 1rem; }
-    input[type="submit"] { width: 100%; }
+    #submit-btn  { width: 100%; }
 }
