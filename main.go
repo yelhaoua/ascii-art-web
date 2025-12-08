@@ -1,6 +1,7 @@
 package main
 
 import (
+	asciiart "asciiart/func"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 
 var temp = template.Must(template.ParseGlob("files/*.html"))
 var name = ""
+var fName = ""
 
 func home(w http.ResponseWriter, r *http.Request) {
 
@@ -17,21 +19,25 @@ func home(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
 func handelForm(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		name = r.FormValue("name")
-	} 
-
-	err := temp.ExecuteTemplate(w, "form.html", name)
-	if err != nil {
-		fmt.Fprintln(w, err)
-	}
-
+	temp.ExecuteTemplate(w, "form.html", nil)
 }
+
 func handleAscii(w http.ResponseWriter, r *http.Request) {
-	err := temp.ExecuteTemplate(w, "ascii.html", name)
-	if err != nil {
-		fmt.Fprintln(w, err)
+
+	if r.Method == "POST" {
+		fName = r.FormValue("radio")
+		name = r.FormValue("name")
+
+	}
+	
+	splited := asciiart.Splite(fName)
+
+	name = asciiart.PrintSymbole(splited, name)
+	asciiErr := temp.ExecuteTemplate(w, "ascii.html", name)
+	if asciiErr != nil {
+		fmt.Fprintln(w, asciiErr)
 	}
 
 }

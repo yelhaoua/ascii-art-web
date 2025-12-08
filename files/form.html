@@ -7,14 +7,27 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" method="post">
-      {{if .}}
-      <h1>welcome {{.}}</h1>
-      {{else}}
-      <h1>Enter name pleas</h1>
-      {{end}}
-      <input type="text" name="name" placeholder="Enter Text" />
-      <button type="submit">submit</button>
+    <div class="Container">
+    <form action="./ascii.html" method="post">
+      <div class="Inputs">
+        <div class="Inputs-lable">
+          <label for="shadow">shadow</label>
+          <input id="shadow" type="radio" value="shadow.txt" name="radio" />
+          <label for="standard">standard</label>
+          <input id="standard" type="radio" value="standard.txt" name="radio" />
+          <label for="thinkertoy">thinkertoy</label>
+          <input
+            id="thinkertoy"
+            type="radio"
+            value="thinkertoy.txt"
+            name="radio"
+          />
+          
+        </div>
+      </div>
+      <input class="generate" type="text" name="name" placeholder="Enter Text" />
+      <button class="liquid-btn" type="submit">submit</button>
     </form>
+    </div>
   </body>
 </html>
