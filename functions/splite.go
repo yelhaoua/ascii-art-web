@@ -14,6 +14,7 @@ func Spite(input, style string) string {
 	}
 	file := string(data)
 	var final [][]string
+	file = strings.ReplaceAll(file, "\r", "")
 	Start := strings.Split(file, "\n")
 	str := strings.ReplaceAll(input, "\\n", "\n")
 	if strings.Trim(str, "\n") == "" {
