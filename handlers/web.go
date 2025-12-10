@@ -14,9 +14,11 @@ var fs = http.FileServer(http.Dir("./files"))
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
+		return
 	} else {
 		if r.Method != http.MethodGet {
 			w.WriteHeader(http.StatusMethodNotAllowed)
+			return
 		} else {
 			err := temp.ExecuteTemplate(w, "index.html", nil)
 			if err != nil {
@@ -56,10 +58,12 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 
 }
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL.Path[len("/files/"):])
 	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
+		temp.ExecuteTemplate(w, "forbiden.html", nil)
+		w.WriteHeader(http.StatusForbidden)
 		return
 	}
-	fmt.Println(r.URL.Path[len("/files/"):])
 
 	http.ServeFile(w, r, "./files/"+r.URL.Path[len("/files/"):])
 }
