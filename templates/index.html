@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ascii Art Web</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <source src="" type="">
 </head>
 <body>
     <h1>Ascii Art Web</h1>
     <div class="cont">
-        <form hx-post="/ascii-art" id="" hx-target="#result">
+        <form action="/ascii-art" method="post" id="">
             <h2>Text to ASCII Art Generator: Create ASCII Art from Text</h2>
-
             <label for="userinput" >
                 Input text:
                 <input type="text" name="userinput" id="userinput" placeholder="Enter text to convert" required>
@@ -31,7 +30,6 @@
                 <button type="submit" name="submit" id="submit-btn">convert</button>
             </div>
         </form>
-        <div id="result" aria-live="polite" style="white-space: pre; font-family: monospace; margin-top:1rem;"></div>
     </div>
 
 </body>
