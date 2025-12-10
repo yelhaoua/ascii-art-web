@@ -18,6 +18,7 @@ It works using HTTP **GET** and **POST** requests and follows proper **HTTP stat
 ## 👨‍💻 Authors
 
 - Yaakoub Elhaouari
+- Hichame Ait benalla
 
 ## 🚀 Usage (How to Run)
 
