@@ -42,6 +42,7 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 			splited := asciiart.Splite(fName)
 
 			name = asciiart.PrintSymbole(splited, name)
+			fmt.Println(name)
 
 			asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", name)
 			if asciiErr != nil {
@@ -55,13 +56,10 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 
 }
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Path)
-	if strings.Contains(r.URL.Path, "/files") {
-		temp.ExecuteTemplate(w, "forbiden.html", nil)
-		w.WriteHeader(http.StatusForbidden)
+	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
 		return
-	} else {
-		fs.ServeHTTP(w, r)
 	}
+	fmt.Println(r.URL.Path[len("/files/"):])
 
+	http.ServeFile(w, r, "./files/"+r.URL.Path[len("/files/"):])
 }
