@@ -25,9 +25,11 @@ It works using HTTP **GET** and **POST** requests and follows proper **HTTP stat
 ### 1. Clone the repository:
 
 ```bash
-git clone git@github.com:yelhaoua/ascii-art-web.git
+git clone https://learn.zone01oujda.ma/git/yelhaoua/ascii-art-web.git
 cd ascii-art-web
 go run main.go
+or
+go run .
 http://localhost:8080
 ```
 
@@ -35,6 +37,8 @@ http://localhost:8080
 
 ```bash
 go run main.go
+or
+go run .
 ```
 
 ### 3. Open your browser and go to:
