@@ -6,7 +6,7 @@ import (
 )
 
 // parsing the html files globaly for not parsing the files evry handler
-var temp = template.Must(template.ParseGlob("./files/*.html"))
+var temp = template.Must(template.ParseGlob("./templates/*.html"))
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	// check the path if is in home
@@ -16,7 +16,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	} else {
 		// check the method if this method is get and rendre the err
 		if r.Method != http.MethodGet {
-			HandleErr(w, "MethodNotAllowed", http.StatusMethodNotAllowed)
+			HandleErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 			return
 		} else {
 			err := temp.ExecuteTemplate(w, "index.html", nil)

@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-var pages = template.Must(template.ParseGlob("./files/*.html"))
+var pages = template.Must(template.ParseGlob("./templates/*.html"))
 
 type data struct {
 	Code        int

@@ -2,12 +2,14 @@ package handlers
 
 import (
 	"net/http"
+	"os"
 	"strings"
 )
 
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
 	// make the access to files directory forbidden
-	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
+	file, err := os.Stat(strings.TrimPrefix(r.URL.Path, "/"))
+	if err != nil || file.IsDir() {
 		HandleErr(w, "Forbidden", http.StatusForbidden)
 		return
 	}
