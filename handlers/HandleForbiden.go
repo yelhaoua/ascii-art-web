@@ -6,6 +6,7 @@ import (
 )
 
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
+	// make the acses to files directory forbiden
 	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
 		HandleErr(w, "Forbidden", http.StatusForbidden)
 		return
