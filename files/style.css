@@ -47,7 +47,8 @@ div p {
   max-width: 600px;
   text-align: center;
 }
-.liquid-btn {
+.liquid-btn,
+.aForrbeden {
   position: relative;
   padding: 10px 20px;
   border-radius: 20px;
@@ -66,7 +67,8 @@ div p {
   overflow: hidden;
 }
 
-.liquid-btn::before {
+.liquid-btn::before,
+.aForrbeden::before {
   content: "";
   position: absolute;
   inset: -40%;
@@ -85,7 +87,8 @@ div p {
   z-index: 1;
 }
 
-.liquid-btn:hover {
+.liquid-btn:hover,
+.aForrbeden:hover {
   box-shadow: 0 0px 40px rgba(255, 255, 255, 0.359);
 }
 
@@ -94,9 +97,15 @@ div p {
 }
 .Ascii {
   color: white;
+  padding: 0px 20px;
   white-space: pre;
   font-family: monospace;
-  font-size: 10px;
+  font-size: 15px;
+  overflow-y: auto;
+  scrollbar-color: #ffffff21 #ffffff00;
+  width: 80%;
+  height: 80%;
+  overflow: scroll;
 }
 form {
   margin-left: auto;
@@ -151,3 +160,18 @@ form {
 input::placeholder {
   color: white;
 }
+
+.Forrbeden {
+  color: white;
+  font-size: 50px;
+  padding: 20px;
+}
+.pForrbeden {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}
+.aForrbeden {
+  color: white !important ;
+}
+

@@ -14,7 +14,6 @@
     <title>ascii art web</title>
   </head>
   <body>
-    <button id="hhh">ggggg</button>
     <div class="Container">
       <div class="Hero">
         <h1 class="Header">Generate Text to</h1>
@@ -49,10 +48,13 @@
           placeholder="Enter Text"
           value="Enter some caracters"
         ></textarea>
-
+        {{if .Err}}
+        <p>{{.Err}}</p>
         <button class="liquid-btn" type="submit">Generate</button>
+        {{else }}
+        <button class="liquid-btn" type="submit">Generate</button>
+        {{end}}
       </form>
     </div>
   </body>
-  <script src="../files/wk.js"></script>
 </html>

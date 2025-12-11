@@ -2,14 +2,20 @@ package handlers
 
 import (
 	asciiart "asciiart/func"
-	"fmt"
 	"html/template"
 	"net/http"
 	"strings"
 )
 
 var temp = template.Must(template.ParseGlob("./files/*.html"))
-var fs = http.FileServer(http.Dir("./files"))
+
+type data struct {
+	Err   string
+	name  string
+	fName string
+}
+
+var info data
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
@@ -20,9 +26,11 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 			return
 		} else {
-			err := temp.ExecuteTemplate(w, "index.html", nil)
+
+			err := temp.ExecuteTemplate(w, "index.html", info)
 			if err != nil {
-				http.Error(w, "500", 500)
+				w.WriteHeader(http.StatusInternalServerError)
+				return
 			}
 		}
 
@@ -31,26 +39,30 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleAscii(w http.ResponseWriter, r *http.Request) {
-	var name string
-	var fName string
+
 	if r.Method == http.MethodPost {
 
 		err := r.ParseForm()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 		} else {
-			name = r.FormValue("name")
-			fName = r.FormValue("radio")
-			splited := asciiart.Splite(fName)
-
-			name = asciiart.PrintSymbole(splited, name)
-			fmt.Println(name)
-
-			asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", name)
-			if asciiErr != nil {
-				fmt.Fprintln(w, asciiErr)
+			form := r.Form
+			if !form.Has("name") || !form.Has("radio") {
+				info = data{Err: "dont change in the form pleas", name: "", fName: ""}
+				http.Redirect(w, r, "/", http.StatusMovedPermanently)
+				return
+			} else {
+				info = data{Err: "", name: r.FormValue("name"), fName: r.FormValue("radio")}
+				splited := asciiart.Splite(info.fName)
+				name := asciiart.PrintSymbole(splited, info.name)
+				asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", name)
+				if asciiErr != nil {
+					w.WriteHeader(http.StatusInternalServerError)
+					return
+				}
+				w.WriteHeader(http.StatusOK)
 			}
-			w.WriteHeader(http.StatusOK)
+
 		}
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
@@ -58,10 +70,10 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 
 }
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Path[len("/files/"):])
 	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
-		temp.ExecuteTemplate(w, "forbiden.html", nil)
 		w.WriteHeader(http.StatusForbidden)
+		temp.ExecuteTemplate(w, "forbiden.html", nil)
+
 		return
 	}
 
