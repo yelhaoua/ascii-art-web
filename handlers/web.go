@@ -2,6 +2,7 @@ package handlers
 
 import (
 	asciiart "asciiart/func"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strings"
@@ -9,27 +10,21 @@ import (
 
 var temp = template.Must(template.ParseGlob("./files/*.html"))
 
-type data struct {
-	Err   string
-	name  string
-	fName string
-}
-
-var info data
-
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
+		temp.ExecuteTemplate(w, "Err.html", "404 : Not Found")
 		return
 	} else {
 		if r.Method != http.MethodGet {
-			w.WriteHeader(http.StatusMethodNotAllowed)
+			// w.WriteHeader(http.StatusMethodNotAllowed)
+			http.Error(w, "MethodNotAllowed", http.StatusMethodNotAllowed)
 			return
 		} else {
-
-			err := temp.ExecuteTemplate(w, "index.html", info)
+			err := temp.ExecuteTemplate(w, "index.html", nil)
 			if err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
+				temp.ExecuteTemplate(w, "Err.html", "500 : Internal Server")
 				return
 			}
 		}
@@ -39,43 +34,43 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleAscii(w http.ResponseWriter, r *http.Request) {
-
 	if r.Method == http.MethodPost {
-
 		err := r.ParseForm()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
+			return
 		} else {
 			form := r.Form
 			if !form.Has("name") || !form.Has("radio") {
-				info = data{Err: "dont change in the form pleas", name: "", fName: ""}
-				http.Redirect(w, r, "/", http.StatusMovedPermanently)
+				w.WriteHeader(http.StatusBadRequest)
+				temp.ExecuteTemplate(w, "forbiden.html", "404 : Bad Request")
 				return
 			} else {
-				info = data{Err: "", name: r.FormValue("name"), fName: r.FormValue("radio")}
-				splited := asciiart.Splite(info.fName)
-				name := asciiart.PrintSymbole(splited, info.name)
-				asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", name)
+				name := r.FormValue("name")
+				fName := r.FormValue("radio")
+				splited := asciiart.Splite(fName)
+				res := asciiart.PrintSymbole(splited, name)
+				asciiErr := temp.ExecuteTemplate(w, "ascii-art.html", res)
 				if asciiErr != nil {
 					w.WriteHeader(http.StatusInternalServerError)
 					return
 				}
 				w.WriteHeader(http.StatusOK)
+				return
 			}
-
 		}
 	} else {
 		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
 }
 func HandleForbiden(w http.ResponseWriter, r *http.Request) {
 	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
 		w.WriteHeader(http.StatusForbidden)
-		temp.ExecuteTemplate(w, "forbiden.html", nil)
-
+		temp.ExecuteTemplate(w, "Err.html", "500 : Internal Server")
 		return
 	}
-
+	fmt.Println(r.URL.Path)
 	http.ServeFile(w, r, "./files/"+r.URL.Path[len("/files/"):])
 }
