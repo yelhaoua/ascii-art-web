@@ -2,32 +2,8 @@ package handlers
 
 import (
 	asciiart "asciiart/func"
-	"html/template"
 	"net/http"
-	"strings"
 )
-
-var temp = template.Must(template.ParseGlob("./files/*.html"))
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		HandleErr(w, "Page Not Found", http.StatusNotFound)
-		return
-	} else {
-		if r.Method != http.MethodGet {
-			HandleErr(w, "MethodNotAllowed", http.StatusMethodNotAllowed)
-			return
-		} else {
-			err := temp.ExecuteTemplate(w, "index.html", nil)
-			if err != nil {
-				HandleErr(w, "Internal Server Error", http.StatusInternalServerError)
-				return
-			}
-		}
-
-	}
-
-}
 
 func HandleAscii(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
@@ -57,15 +33,8 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	} else {
-		HandleErr(w, "Bad Request", http.StatusBadRequest)
+		HandleErr(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-}
-func HandleForbiden(w http.ResponseWriter, r *http.Request) {
-	if r.Referer() == "" || !strings.HasPrefix(r.Referer(), "http://localhost:8080/") {
-		HandleErr(w, "Forbidden", http.StatusForbidden)
-		return
-	}
-	http.ServeFile(w, r, "./files/"+r.URL.Path[len("/files/"):])
 }
