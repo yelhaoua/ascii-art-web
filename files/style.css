@@ -17,7 +17,11 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+<<<<<<< HEAD
 .container {
+=======
+.Container {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +29,11 @@ body {
   width: 100%;
   height: 100%;
 }
+<<<<<<< HEAD
 .hero {
+=======
+.Hero {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -33,11 +41,19 @@ body {
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .header {
   color: white;
   font-size: 50px;
 }
 .tag {
+=======
+.Header {
+  color: white;
+  font-size: 50px;
+}
+.Tag {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   color: #de55de;
   font-size: 50px;
 }
@@ -48,7 +64,11 @@ div p {
   text-align: center;
 }
 .liquid-btn,
+<<<<<<< HEAD
 .btn-forrbeden {
+=======
+.aForrbeden {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   position: relative;
   padding: 10px 20px;
   border-radius: 20px;
@@ -68,7 +88,11 @@ div p {
 }
 
 .liquid-btn::before,
+<<<<<<< HEAD
 .aforrbeden::before {
+=======
+.aForrbeden::before {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   content: "";
   position: absolute;
   inset: -40%;
@@ -88,14 +112,22 @@ div p {
 }
 
 .liquid-btn:hover,
+<<<<<<< HEAD
 .aforrbeden:hover {
+=======
+.aForrbeden:hover {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   box-shadow: 0 0px 40px rgba(255, 255, 255, 0.359);
 }
 
 .Hello {
   background-color: red;
 }
+<<<<<<< HEAD
 .ascii {
+=======
+.Ascii {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   color: white;
   padding: 0px 20px;
   white-space: pre;
@@ -126,13 +158,21 @@ form {
   width: fit-content;
 }
 
+<<<<<<< HEAD
 .inputs {
+=======
+.Inputs {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
+<<<<<<< HEAD
 .inputs label {
+=======
+.Inputs label {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   font-size: 20px;
   color: white;
   text-transform: capitalize;
@@ -161,17 +201,29 @@ input::placeholder {
   color: white;
 }
 
+<<<<<<< HEAD
 .forrbeden {
+=======
+.Forrbeden {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   color: white;
   font-size: 50px;
   padding: 20px;
 }
+<<<<<<< HEAD
 .des-forrbeden {
+=======
+.DForrbeden {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   font-size: 25px;
   color: white;
   text-align: center;
 }
 
+<<<<<<< HEAD
 .btn-forrbeden {
+=======
+.aForrbeden {
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
   color: white !important ;
 }
