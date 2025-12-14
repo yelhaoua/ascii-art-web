@@ -56,6 +56,7 @@ Select a banner
 Click Submit
 
 The ASCII result will be displayed
+<<<<<<< HEAD
 
 **Implementation Details: Algorithm**
 
@@ -66,3 +67,5 @@ The ASCII result will be displayed
 - **HTTP flow (`handlers.HandleAscii` and `main.go`):**: `HandleAscii` validates the request (must be POST and include `name` and `radio` form fields), ensures the chosen banner file is allowed, calls `Splite` to get glyphs, calls `PrintSymbole` to render the art, and then executes the `ascii-art.html` template with the resulting string. `main.go` wires the routes: `/` (home), `/ascii-art` (render), and `/files/` (static file guard).
 - **Notes and edge cases:**: `thinkertoy.txt` needs CRLF handling, empty input returns an empty string, and the renderer ignores characters outside printable ASCII. The mapping formula is `index = int(rune) - 32`.
 
+=======
+>>>>>>> 4d29ef36ee2c91e8da7a0cf6b76c6d8e29396f7c
