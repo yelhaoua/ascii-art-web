@@ -16,5 +16,5 @@ func HandleErr(w http.ResponseWriter, descriptioin string, statusCode int) {
 	// render the err pop up
 	info := data{Code: statusCode, Description: descriptioin}
 	w.WriteHeader(statusCode)
-	pages.ExecuteTemplate(w, "Err.html", info)
+	pages.ExecuteTemplate(w, "error.html", info)
 }
