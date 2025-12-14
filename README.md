@@ -57,7 +57,7 @@ Click Submit
 
 The ASCII result will be displayed
 
-**Implementation Details: Algorithm**
+## Implementation Details: Algorithm
 
 - **Overall:**: The app converts user input text into ASCII art by loading a banner/font file (one of `standard.txt`, `shadow.txt`, `thinkertoy.txt`), parsing it into glyph rows, then mapping each printable ASCII character in the input to its glyph and assembling the output row-by-row.
 - **Font file format:**: Each banner file contains a header line followed by blocks of 8 lines per glyph (with a separating blank line). `thinkertoy.txt` uses CRLF (`\r\n`) line endings; the others use LF (`\n`).
