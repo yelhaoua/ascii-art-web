@@ -10,7 +10,7 @@ func HandleDownlaod(w http.ResponseWriter, r *http.Request) {
 
 		filePath := "./files/AsciiArte.txt"
 		if _, err := os.Stat(filePath); os.IsNotExist(err) {
-			http.Error(w, "File not found", http.StatusNotFound)
+			HandleErr(w, "InternalServerError", http.StatusInternalServerError)
 			return
 		}
 
