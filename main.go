@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"asciiart/handlers"
@@ -11,6 +12,10 @@ func main() {
 	http.HandleFunc("/", handlers.Home)
 	http.HandleFunc("/ascii-art", handlers.HandleAscii)
 	http.HandleFunc("/downlaod", handlers.HandleDownlaod)
-
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("server Runing http://localhost:8080/")
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("Internal Server Err")
+		return
+	}
 }

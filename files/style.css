@@ -63,7 +63,8 @@ div p {
   cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
     inset 0 0 12px rgba(255, 255, 255, 0.15);
   transition: 0.3s ease;
   overflow: hidden;
@@ -74,11 +75,8 @@ div p {
   content: "";
   position: absolute;
   inset: -40%;
-  background: radial-gradient(
-      circle at 30% 30%,
-      rgb(255, 255, 255),
-      transparent 40%
-    ),
+  background:
+    radial-gradient(circle at 30% 30%, rgb(255, 255, 255), transparent 40%),
     radial-gradient(circle at 70% 70%, #de55de, transparent 45%);
   filter: blur(25px);
   z-index: 0;
@@ -122,7 +120,8 @@ form {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
     inset 0 0 12px rgba(255, 255, 255, 0.15);
 
   border-radius: 20px;
@@ -156,7 +155,8 @@ form {
   cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
     inset 0 0 12px rgba(255, 255, 255, 0.15);
   transition: 0.3s ease;
   overflow: hidden;
@@ -180,7 +180,11 @@ input::placeholder {
 .btn-forrbeden {
   color: white !important ;
 }
-.btns{
+.btns {
   display: flex;
-  gap:  10px ;
+  gap: 10px;
+  font-size: 16px;  
+}
+.btns a {
+  font-size: 16px; 
 }
